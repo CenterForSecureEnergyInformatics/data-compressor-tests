@@ -12,7 +12,7 @@ source "$workdir/test_dega.sh"
 source "$workdir/test_lzmh.sh"
 source "$workdir/test_copy.sh"
 
-dataCompressorPath="../../data-compressor"
+dataCompressorPath="../data-compressor"
 
 is_numeric_regex='^[0-9]+$'
 
