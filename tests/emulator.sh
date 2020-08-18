@@ -64,7 +64,7 @@ emulator(){
 
         elif [[ $k == MINGW64* && $m == x86_64 ]]; then
         echo "command: $*"
-                echo "no emulator, windows."
+                echo "Windows. No emulator needed, we can run the executable natively."
                 bash -c "$*"
         else
                 echo "Emulator: Error: this platform is not supported. kernel=$k, machine=$m"
