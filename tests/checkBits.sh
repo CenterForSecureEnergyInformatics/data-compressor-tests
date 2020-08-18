@@ -19,7 +19,7 @@ script_name="$(basename "$0")"
 err_msg() {
         echo "Error: $1"
         echo "Linux: $script_name <i386|x86_64|armhf>"
-        echo "Raspberry: $script_name <arm>"
+        echo "Raspberry Pi: $script_name arm"
         echo "Windows: $script_name <win32|x64>"
 }
 
