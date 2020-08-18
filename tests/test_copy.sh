@@ -1,32 +1,32 @@
 #!/usr/bin/env bash
 test_copy() {
         # function to run the copy algorithm on testdata.
-        # dccli_command, testdata_input, testdata_output, sep and success are global vars that have to be set in the script sourcing this file.
+        # is_numeric_regex, xdccli_command, testdata_input, testdata_output, sep and success are global vars that have to be set in the script sourcing this file.
         # first we check if the command itself fails.
         # in case of success, we run diff and check if it failed.
         # note that we run "set +e" to ignore errors, so you have to use the returnvalue to stop on errors.
 
         # # usage example:
         # source test_copy.sh
-        # declare returnvalue
+        # declare returnvar
         # blocksize = 8 # range:1...IO_SIZE_BITS
-        # test_copy $blocksize $returnvalue
-        # echo "$returnvalue"
+        # test_copy $blocksize $returnvar
+        # echo "$returnvar"
         # # end usage example
 
         # blocksize parameter: https://github.com/CenterForSecureEnergyInformatics/data-compressor/tree/master/DataCompressor/DCLib/doc
 
-        # if successful, returnvalue contains whatever the global success variable contains.
-        # in case of failure, returnvalue contains a message with details.
+        # if successful, returnvar contains whatever the global success variable contains.
+        # in case of failure, returnvar contains a message with details.
 
         if ! [ $# -eq 2 ]; then
                 echo "test_copy: exeactly two arguments expected."
-                echo "test_copy: usage: test_copy <max_blocksize> returnvar"
+                echo "test_copy: usage: test_copy <max_blocksize> <returnvar>"
                 exit 1
         fi
         if ! [[ $1 =~ ${is_numeric_regex:?} ]]; then
-                echo "test_copy: arg 1 has to be numeric"
-                echo "test_copy: usage: test_copy <max_blocksize> returnvar"
+                echo "test_copy: arg 1 (max blocksize) has to be numeric"
+                echo "test_copy: usage: test_copy <max_blocksize> <returnvar>"
                 exit 1
         fi
 
