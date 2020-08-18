@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <inttypes.h>
+#include "../../data-compressor/DataCompressor/common/inc/io.h"
 
 #define BITS_32 4
 #define BITS_64 8
@@ -38,17 +39,6 @@
 #else
         #define PLATFORM "invalid compiler"
         #error "unsupported compiler"
-#endif
-
-#if defined _MSC_VER  && _MSC_VER <= 1800 /* MSVC */
-  #define SIZE_T_FORMAT "Iu"
-  #define SIZE_T_CAST(x) ((size_t)(x))
-#elif defined(__GNUC__) /* gcc */
-  #define SIZE_T_FORMAT PRIuMAX
-  #define SIZE_T_CAST(x) ((uintmax_t)(x))
-#else /* fallback */
-  #define SIZE_T_FORMAT "zu"
-  #define SIZE_T_CAST(x) ((size_t)(x))
 #endif
 
 #define SIZE_T_FORMAT_STRING "%" SIZE_T_FORMAT
