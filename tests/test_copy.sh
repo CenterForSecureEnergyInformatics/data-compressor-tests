@@ -18,24 +18,24 @@ test_copy() {
 
         # if successful, returnvar contains whatever the global success variable contains.
         # in case of failure, returnvar contains a message with details.
-
         if ! [ $# -eq 2 ]; then
                 echo "test_copy: exeactly two arguments expected."
                 echo "test_copy: usage: test_copy <max_blocksize> <returnvar>"
                 exit 1
         fi
-        if ! [[ $1 =~ ${is_numeric_regex:?} ]]; then
+
+        max_blocksize="$1"
+        local __resultvar=$2
+
+        local __result="${success:?}"
+        local current_blocksize dccli_return diff_return failed_blocksizes
+        failed_blocksizes=()
+
+        if ! [[ $max_blocksize =~ ${is_numeric_regex:?} ]]; then
                 echo "test_copy: arg 1 (max blocksize) has to be numeric"
                 echo "test_copy: usage: test_copy <max_blocksize> <returnvar>"
                 exit 1
         fi
-
-        max_blocksize="$1"
-
-        local __resultvar=$2
-        local __result="${success:?}"
-        local current_blocksize dccli_return diff_return failed_blocksizes
-        failed_blocksizes=()
 
         # here we run the copy module with blocksize=1...IO_SIZE_BITS
         current_blocksize=1
