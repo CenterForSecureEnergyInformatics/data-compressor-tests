@@ -37,7 +37,7 @@ success="success"
 err_msg() {
         echo "Error: $1"
         echo "Linux: $script_name <i386|x86_64|armhf> <IO_SIZE_BITS>"
-        echo "Raspberry: $script_name <arm> <IO_SIZE_BITS>"
+        echo "Raspberry Pi: $script_name arm <IO_SIZE_BITS>"
         echo "Windows: $script_name <win32|x64> <IO_SIZE_BITS>"
 }
 
@@ -58,18 +58,17 @@ tests() {
         echo "=========================================================="
         test_lzmh result_lzmh
         echo "=========================================================="
-#        echo "testing copy"
-#        echo "=========================================================="
-#        test_copy "$1" result_copy
-#        echo "=========================================================="
-#        echo "test results"
-#        echo "=========================================================="
+        echo "testing copy"
+        echo "=========================================================="
+        test_copy "$1" result_copy
+        echo "=========================================================="
+        echo "test results"
+        echo "=========================================================="
         echo "dega: $result_dega"
         echo "lzmh: $result_lzmh"
-#        echo "copy: $result_copy"
+        echo "copy: $result_copy"
 
-#        if ! [[ "$result_dega" == "$success" && "$result_lzmh" == "$success" && "$result_copy" == "$success" ]]; then
-        if ! [[ "$result_dega" == "$success" && "$result_lzmh" == "$success" ]]; then
+        if ! [[ "$result_dega" == "$success" && "$result_lzmh" == "$success" && "$result_copy" == "$success" ]]; then
                 echo "Error. Some tests did not pass."
                 exit 1
         fi
@@ -79,12 +78,12 @@ tests() {
 # start of script.
 # #######################################
 if ! [ $# -eq 2 ]; then
-        err_msg "not enough / too much arguments"
+        err_msg "not enough / too many arguments"
         exit 1
 fi
 
 if ! [[ $2 =~ $is_numeric_regex ]] ; then
-        err_msg "arg 2 has to be numeric"
+    err_msg "arg 2 (IO_SIZE_BITS) has to be numeric"
         exit 1
 fi
 
